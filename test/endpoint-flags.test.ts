@@ -78,10 +78,12 @@ describe('per-tool behavior on the real tool surface', () => {
   const DELTA_TOKEN_TOOLS = [
     'get-drive-delta',
     'get-sharepoint-sites-delta',
+    'list-shared-calendar-view-delta',
+    'list-shared-mailbox-folder-messages-delta',
     'list-sharepoint-site-list-items-delta',
   ];
 
-  it('offers the delta token param on exactly the delta tools that page with token=', () => {
+  it('offers the token param on exactly the delta tools configured to resume from a link', () => {
     const withToken = server.registerTool.mock.calls
       .filter(
         (c: unknown[]) => 'token' in (c[1] as { inputSchema: { shape: object } }).inputSchema.shape

@@ -10,7 +10,7 @@ Every preset also includes the account tools (`login`, `logout`, `verify-login`,
 
 | Preset        | Mode                                                             |      Tools |   Scopes | Org mode             | Description                                                                                                                       |
 | ------------- | ---------------------------------------------------------------- | ---------: | -------: | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `all`         | [full](#all-full)<br>[read only](#all-read-only)                 | 371<br>181 | 65<br>38 | -<br>-               | All available tools                                                                                                               |
+| `all`         | [full](#all-full)<br>[read only](#all-read-only)                 | 383<br>190 | 65<br>38 | -<br>-               | All available tools                                                                                                               |
 | `calendar`    | [full](#calendar-full)<br>[read only](#calendar-read-only)       |   48<br>23 |   7<br>5 | -<br>-               | Calendar and event management                                                                                                     |
 | `contacts`    | [full](#contacts-full)<br>[read only](#contacts-read-only)       |    15<br>7 |   1<br>1 | -<br>-               | Outlook contacts management                                                                                                       |
 | `excel`       | [full](#excel-full)<br>[read only](#excel-read-only)             |    25<br>9 |   1<br>1 | -<br>-               | Excel spreadsheet operations                                                                                                      |
@@ -25,15 +25,16 @@ Every preset also includes the account tools (`login`, `logout`, `verify-login`,
 | `teams`       | [full](#teams-full)<br>[read only](#teams-read-only)             |   73<br>43 | 31<br>18 | required<br>required | Teams app only: chats, channels, meetings and presence                                                                            |
 | `teams-write` | [full](#teams-write-full)<br>[read only](#teams-write-read-only) |    11<br>7 |   6<br>3 | required<br>required | Teams send-only: send/reply in chats and channels, list chats/teams/channels by name, activity notifications - no message reading |
 | `users`       | [full](#users-full)<br>[read only](#users-read-only)             |   11<br>11 |   4<br>4 | required<br>required | User directory access                                                                                                             |
-| `work`        | [full](#work-full)<br>[read only](#work-read-only)               | 191<br>111 | 55<br>33 | required<br>required | Organization/work tools (Teams, SharePoint, shared mailboxes, search)                                                             |
+| `work`        | [full](#work-full)<br>[read only](#work-read-only)               | 203<br>120 | 55<br>33 | required<br>required | Organization/work tools (Teams, SharePoint, shared mailboxes, search)                                                             |
 
 ## `all` full
 
 All available tools
 
-Tools (371):
+Tools (383):
 
 - `accept-calendar-event`
+- `accept-shared-calendar-event`
 - `add-calendar-event-attachment`
 - `add-excel-table-rows`
 - `add-group-member`
@@ -107,6 +108,7 @@ Tools (371):
 - `create-todo-task-list`
 - `create-upload-session`
 - `decline-calendar-event`
+- `decline-shared-calendar-event`
 - `delete-calendar`
 - `delete-calendar-event`
 - `delete-contact-folder`
@@ -144,6 +146,7 @@ Tools (371):
 - `download-bytes-to-file`
 - `extract-drive-item-sensitivity-labels`
 - `find-meeting-times`
+- `find-shared-meeting-times`
 - `format-excel-range`
 - `format-excel-range-border`
 - `format-excel-range-fill`
@@ -196,10 +199,13 @@ Tools (371):
 - `get-room-list-room`
 - `get-schedule`
 - `get-sensitivity-label`
+- `get-shared-calendar-event`
+- `get-shared-calendar-event-attachment-content`
 - `get-shared-calendar-view`
 - `get-shared-mailbox-attachment-content`
 - `get-shared-mailbox-message`
 - `get-shared-mailbox-message-mime`
+- `get-shared-specific-calendar-view`
 - `get-sharepoint-list-column`
 - `get-sharepoint-site`
 - `get-sharepoint-site-by-path`
@@ -292,10 +298,15 @@ Tools (371):
 - `list-room-list-rooms`
 - `list-rooms`
 - `list-sensitivity-labels`
+- `list-shared-calendar-event-attachments`
+- `list-shared-calendar-event-instances`
 - `list-shared-calendar-events`
+- `list-shared-calendar-view-delta`
+- `list-shared-calendars`
 - `list-shared-mailbox-attachments`
 - `list-shared-mailbox-child-folders`
 - `list-shared-mailbox-folder-messages`
+- `list-shared-mailbox-folder-messages-delta`
 - `list-shared-mailbox-folders`
 - `list-shared-mailbox-messages`
 - `list-sharepoint-list-columns`
@@ -363,6 +374,7 @@ Tools (371):
 - `snooze-calendar-event-reminder`
 - `sort-excel-range`
 - `tentatively-accept-calendar-event`
+- `tentatively-accept-shared-calendar-event`
 - `unmerge-excel-range`
 - `unpin-chat-message`
 - `unset-channel-message-reaction`
@@ -477,12 +489,13 @@ Scopes (65):
 
 All available tools
 
-Tools (181):
+Tools (190):
 
 - `copilot-retrieve`
 - `download-bytes`
 - `download-bytes-to-file`
 - `find-meeting-times`
+- `find-shared-meeting-times`
 - `get-adhoc-call-transcript-content`
 - `get-calendar-event`
 - `get-calendar-view`
@@ -528,10 +541,13 @@ Tools (181):
 - `get-room-list-room`
 - `get-schedule`
 - `get-sensitivity-label`
+- `get-shared-calendar-event`
+- `get-shared-calendar-event-attachment-content`
 - `get-shared-calendar-view`
 - `get-shared-mailbox-attachment-content`
 - `get-shared-mailbox-message`
 - `get-shared-mailbox-message-mime`
+- `get-shared-specific-calendar-view`
 - `get-sharepoint-list-column`
 - `get-sharepoint-site`
 - `get-sharepoint-site-by-path`
@@ -621,10 +637,15 @@ Tools (181):
 - `list-room-list-rooms`
 - `list-rooms`
 - `list-sensitivity-labels`
+- `list-shared-calendar-event-attachments`
+- `list-shared-calendar-event-instances`
 - `list-shared-calendar-events`
+- `list-shared-calendar-view-delta`
+- `list-shared-calendars`
 - `list-shared-mailbox-attachments`
 - `list-shared-mailbox-child-folders`
 - `list-shared-mailbox-folder-messages`
+- `list-shared-mailbox-folder-messages-delta`
 - `list-shared-mailbox-folders`
 - `list-shared-mailbox-messages`
 - `list-sharepoint-list-columns`
@@ -2097,8 +2118,9 @@ Organization/work tools (Teams, SharePoint, shared mailboxes, search)
 
 Requires `--org-mode`.
 
-Tools (191):
+Tools (203):
 
+- `accept-shared-calendar-event`
 - `add-group-member`
 - `add-group-owner`
 - `add-shared-mailbox-attachment`
@@ -2129,6 +2151,7 @@ Tools (191):
 - `create-sharepoint-site-onenote-section-group-section`
 - `create-sharepoint-site-onenote-section-page`
 - `create-team-channel`
+- `decline-shared-calendar-event`
 - `delete-group`
 - `delete-online-meeting`
 - `delete-planner-bucket`
@@ -2140,6 +2163,7 @@ Tools (191):
 - `delete-team-channel`
 - `download-bytes`
 - `download-bytes-to-file`
+- `find-shared-meeting-times`
 - `forward-shared-mailbox-mail`
 - `get-adhoc-call-transcript-content`
 - `get-channel-files-folder`
@@ -2167,10 +2191,13 @@ Tools (191):
 - `get-room`
 - `get-room-list`
 - `get-room-list-room`
+- `get-shared-calendar-event`
+- `get-shared-calendar-event-attachment-content`
 - `get-shared-calendar-view`
 - `get-shared-mailbox-attachment-content`
 - `get-shared-mailbox-message`
 - `get-shared-mailbox-message-mime`
+- `get-shared-specific-calendar-view`
 - `get-sharepoint-list-column`
 - `get-sharepoint-site`
 - `get-sharepoint-site-by-path`
@@ -2222,10 +2249,15 @@ Tools (191):
 - `list-relevant-people`
 - `list-room-list-rooms`
 - `list-rooms`
+- `list-shared-calendar-event-attachments`
+- `list-shared-calendar-event-instances`
 - `list-shared-calendar-events`
+- `list-shared-calendar-view-delta`
+- `list-shared-calendars`
 - `list-shared-mailbox-attachments`
 - `list-shared-mailbox-child-folders`
 - `list-shared-mailbox-folder-messages`
+- `list-shared-mailbox-folder-messages-delta`
 - `list-shared-mailbox-folders`
 - `list-shared-mailbox-messages`
 - `list-sharepoint-list-columns`
@@ -2270,6 +2302,7 @@ Tools (191):
 - `set-my-presence`
 - `set-my-status-message`
 - `set-my-user-preferred-presence`
+- `tentatively-accept-shared-calendar-event`
 - `unpin-chat-message`
 - `unset-channel-message-reaction`
 - `unset-chat-message-reaction`
@@ -2355,11 +2388,12 @@ Organization/work tools (Teams, SharePoint, shared mailboxes, search)
 
 Requires `--org-mode`.
 
-Tools (111):
+Tools (120):
 
 - `copilot-retrieve`
 - `download-bytes`
 - `download-bytes-to-file`
+- `find-shared-meeting-times`
 - `get-adhoc-call-transcript-content`
 - `get-channel-files-folder`
 - `get-channel-message`
@@ -2386,10 +2420,13 @@ Tools (111):
 - `get-room`
 - `get-room-list`
 - `get-room-list-room`
+- `get-shared-calendar-event`
+- `get-shared-calendar-event-attachment-content`
 - `get-shared-calendar-view`
 - `get-shared-mailbox-attachment-content`
 - `get-shared-mailbox-message`
 - `get-shared-mailbox-message-mime`
+- `get-shared-specific-calendar-view`
 - `get-sharepoint-list-column`
 - `get-sharepoint-site`
 - `get-sharepoint-site-by-path`
@@ -2440,10 +2477,15 @@ Tools (111):
 - `list-relevant-people`
 - `list-room-list-rooms`
 - `list-rooms`
+- `list-shared-calendar-event-attachments`
+- `list-shared-calendar-event-instances`
 - `list-shared-calendar-events`
+- `list-shared-calendar-view-delta`
+- `list-shared-calendars`
 - `list-shared-mailbox-attachments`
 - `list-shared-mailbox-child-folders`
 - `list-shared-mailbox-folder-messages`
+- `list-shared-mailbox-folder-messages-delta`
 - `list-shared-mailbox-folders`
 - `list-shared-mailbox-messages`
 - `list-sharepoint-list-columns`

@@ -656,6 +656,145 @@
     "supportsTimezone": true
   },
   {
+    "pathPattern": "/users/{user-id}/events/{event-id}/accept",
+    "method": "post",
+    "toolName": "accept-shared-calendar-event",
+    "descriptionOverride": "Accept a meeting invitation in another user's calendar. Calendar delegate access is required to respond on the owner's behalf. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.ReadWrite.Shared"],
+    "appScopes": ["Calendars.ReadWrite"],
+    "llmTip": "Accept a meeting invitation on the owner's behalf. Optional body: { sendResponse: true, comment: 'I will attend.' }. sendResponse defaults to true and notifies the organizer; false suppresses that response. Obtain the owner's explicit approval for this event before calling. To respond to one occurrence, use its occurrence ID from list-shared-calendar-event-instances or get-shared-calendar-view, not the series master ID. Read back with get-shared-calendar-event to verify responseStatus; a successful submission alone is not verification."
+  },
+  {
+    "pathPattern": "/users/{user-id}/events/{event-id}/tentativelyAccept",
+    "method": "post",
+    "toolName": "tentatively-accept-shared-calendar-event",
+    "descriptionOverride": "Tentatively accept a meeting invitation in another user's calendar. Calendar delegate access is required to respond on the owner's behalf. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.ReadWrite.Shared"],
+    "appScopes": ["Calendars.ReadWrite"],
+    "llmTip": "Tentatively accept a meeting invitation on the owner's behalf. Optional body: { sendResponse: true, comment: 'I might be able to attend.' }. sendResponse defaults to true and notifies the organizer; false suppresses that response. Obtain the owner's explicit approval for this event before calling. To respond to one occurrence, use its occurrence ID from list-shared-calendar-event-instances or get-shared-calendar-view, not the series master ID. Read back with get-shared-calendar-event to verify responseStatus; a successful submission alone is not verification. Optional proposedNewTime: { start: { dateTime, timeZone }, end: { dateTime, timeZone } } requires sendResponse: true and an event that allows new time proposals."
+  },
+  {
+    "pathPattern": "/users/{user-id}/events/{event-id}/decline",
+    "method": "post",
+    "toolName": "decline-shared-calendar-event",
+    "descriptionOverride": "Decline a meeting invitation in another user's calendar. Calendar delegate access is required to respond on the owner's behalf. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.ReadWrite.Shared"],
+    "appScopes": ["Calendars.ReadWrite"],
+    "llmTip": "Decline a meeting invitation on the owner's behalf. Optional body: { sendResponse: true, comment: 'Cannot attend, conflict.' }. sendResponse defaults to true and notifies the organizer; false suppresses that response. Obtain the owner's explicit approval for this event before calling. To respond to one occurrence, use its occurrence ID from list-shared-calendar-event-instances or get-shared-calendar-view, not the series master ID. Read back with get-shared-calendar-event to verify responseStatus; a successful submission alone is not verification. Optional proposedNewTime: { start: { dateTime, timeZone }, end: { dateTime, timeZone } } requires sendResponse: true and an event that allows new time proposals."
+  },
+  {
+    "pathPattern": "/users/{user-id}/events/{event-id}",
+    "method": "get",
+    "toolName": "get-shared-calendar-event",
+    "descriptionOverride": "Get a single event in another user's calendar, including responseStatus, attendees, body, and onlineMeeting for response verification and meeting preparation. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "appScopes": ["Calendars.Read"],
+    "supportsTimezone": true,
+    "llmTip": "Use select to request only the fields needed, for example id,subject,type,seriesMasterId,responseStatus,attendees,body,onlineMeeting. Use the same owner and event ID as the RSVP. A 404 after declining is not proof of a successful decline; verify the result with the organizer and owner."
+  },
+  {
+    "pathPattern": "/users/{user-id}/events/{event-id}/instances",
+    "method": "get",
+    "toolName": "list-shared-calendar-event-instances",
+    "descriptionOverride": "List occurrences and exceptions of a recurring event in another user's calendar. Requires startDateTime and endDateTime in ISO 8601 format. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "appScopes": ["Calendars.Read"],
+    "supportsTimezone": true,
+    "llmTip": "Pass the series master event-id to list instances. To respond to just one occurrence, use the returned occurrence ID with an RSVP tool, not the series master ID."
+  },
+  {
+    "pathPattern": "/users/{user-id}/findMeetingTimes",
+    "method": "post",
+    "toolName": "find-shared-meeting-times",
+    "descriptionOverride": "Suggest meeting times based on another user's calendar and attendee availability. This query does not create or send invitations. Application permissions are not supported. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "readOnly": true,
+    "supportsTimezone": true
+  },
+  {
+    "pathPattern": "/users/{user-id}/calendars",
+    "method": "get",
+    "toolName": "list-shared-calendars",
+    "descriptionOverride": "List calendars in another user's mailbox that the signed-in delegate can access. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "appScopes": ["Calendars.Read"],
+    "supportsTimezone": true
+  },
+  {
+    "pathPattern": "/users/{user-id}/calendars/{calendar-id}/calendarView",
+    "method": "get",
+    "toolName": "get-shared-specific-calendar-view",
+    "descriptionOverride": "List occurrences, exceptions, and single events in a specific calendar belonging to another user. Requires startDateTime and endDateTime in ISO 8601 format. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "appScopes": ["Calendars.Read"],
+    "supportsTimezone": true
+  },
+  {
+    "pathPattern": "/users/{user-id}/calendarView/delta()",
+    "method": "get",
+    "toolName": "list-shared-calendar-view-delta",
+    "descriptionOverride": "Track changes within a time window in another user's default calendar. Requires startDateTime and endDateTime on the first call. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "appScopes": ["Calendars.Read"],
+    "supportsTimezone": true,
+    "deltaToken": true,
+    "queryParams": ["startDateTime", "endDateTime", "skiptoken"],
+    "llmTip": "On the initial call, provide startDateTime and endDateTime (ISO 8601). Expands recurring events into occurrences. Save the full @odata.deltaLink for the next synchronization and @odata.nextLink to finish the current round. Resume with the full deltaLink as token or the nextLink as skiptoken, with the same user-id and no time-window or other query parameters. Do not pass a bare token or latest. Keep each saved link associated with its original owner and time window. If Graph returns 410 Gone, restart with the original time window.",
+    "extraQueryParams": {
+      "startDateTime": {
+        "type": "string",
+        "description": "ISO 8601 start of the time window. Required for the initial request. Omit when resuming with token or skiptoken; the saved link encodes the original window."
+      },
+      "endDateTime": {
+        "type": "string",
+        "description": "ISO 8601 end of the time window. Required for the initial request. Omit when resuming with token or skiptoken; the saved link encodes the original window."
+      }
+    }
+  },
+  {
+    "pathPattern": "/users/{user-id}/mailFolders/{mailFolder-id}/messages/delta()",
+    "method": "get",
+    "toolName": "list-shared-mailbox-folder-messages-delta",
+    "descriptionOverride": "Track message additions, updates, and removals in a folder of another user's mailbox. The user-id is the mailbox owner's ID or UPN, and delegated access to that mailbox is required.",
+    "presets": ["work"],
+    "workScopes": ["Mail.Read.Shared"],
+    "appScopes": ["Mail.Read"],
+    "deltaToken": true,
+    "llmTip": "Use mailFolder-id='inbox' or an ID from list-shared-mailbox-folders. Save the full @odata.deltaLink for the next synchronization and @odata.nextLink to finish the current round. Resume with the full deltaLink as token or the nextLink as skiptoken, with the same user-id and folder ID and no other query parameters. Do not pass a bare token or latest. Keep each saved link associated with its original owner and folder. If Graph returns 410 Gone, restart synchronization."
+  },
+  {
+    "pathPattern": "/users/{user-id}/events/{event-id}/attachments",
+    "method": "get",
+    "toolName": "list-shared-calendar-event-attachments",
+    "descriptionOverride": "List attachments on an event in another user's calendar. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "appScopes": ["Calendars.Read"],
+    "supportsTimezone": true,
+    "llmTip": "Use get-shared-calendar-event-attachment-content with the attachment ID to retrieve file or item attachment bytes. Cloud reference attachments do not support $value."
+  },
+  {
+    "pathPattern": "/users/{user-id}/events/{event-id}/attachments/{attachment-id}/$value",
+    "method": "get",
+    "toolName": "get-shared-calendar-event-attachment-content",
+    "descriptionOverride": "Download raw file or item attachment content from an event in another user's calendar. The user-id is the calendar owner's ID or UPN, and delegated access to that calendar is required.",
+    "presets": ["work"],
+    "workScopes": ["Calendars.Read.Shared"],
+    "appScopes": ["Calendars.Read"],
+    "supportsTimezone": true,
+    "blobOutput": true,
+    "llmTip": "Find the attachment ID with list-shared-calendar-event-attachments first. With the server's blob output on, bytes return as a file resource; pass fileName to name it. The server's download limit applies. Reference attachments do not support $value and return HTTP 405."
+  },
+  {
     "pathPattern": "/users/{user-id}/events/{event-id}",
     "method": "patch",
     "toolName": "update-shared-calendar-event",
